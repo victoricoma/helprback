@@ -7,18 +7,17 @@ SELECT d.nome AS Dependente, e.nome AS Empregado, e.salario AS Renda
 FROM dependente d, empregado e WHERE d.cod_empregado IN (
 	SELECT cod_empregado FROM empregado WHERE salario BETWEEN 2000 AND 5000
 ) AND d.cod_empregado = e.cod_empregado;
-
-/* Orenação por atributo */
+/* Ordenação dor atributo */
 SELECT * FROM empregado WHERE salario > 3000
 ORDER BY nome;
-SELECT * FROM empregado WHERE
+SELECT * FROM empregado WHERE 
 salario > 3000
-and
-floor(DATEDIFF(NOW(), dt_admissao)/365) >10
+AND
+FLOOR(DATEDIFF(NOW(), dt_admissao)/365) >10
 ORDER BY
-floor(DATEDIFF(NOW(), dt_nascimento)/365);
+FLOOR(DATEDIFF(NOW(), dt_nascimento)/365);
 
-/* Agrupamento relacionamento */
+/* Agrupamento por relacionamento */
 SELECT depto.nome, COUNT(emp.cod_empregado) AS n_empregados 
 FROM departamento depto, empregado emp
 WHERE 
@@ -33,15 +32,11 @@ depto.cod_depto = emp.cod_depto
 GROUP BY depto.nome
 ORDER BY n_empregados ASC;
 
-/* Uma pesquisa que execute uma contagem agrupada 
-por dependentes contando o numero de dependentes 
-por empregado e traga o nome do empregado, 
-o numero de dependentes e seu salário e idade. */
-
-SELECT emp.nome AS empregado, COUNT(dep.cod_dep) AS n_dependentes,
-emp.salario AS salario, FLOOR(DATEDIFF(NOW(), emp.dt_nascimento) / 365) AS idade,
+/* Exercício de Agrupamento e Relacionamento */
+SELECT emp.nome AS empregado, COUNT(dep.cod_dep) AS n_dependentes, 
+emp.salario AS salario, FLOOR(DATEDIFF(NOW(), emp.dt_nascimento)/365) AS idade,
 FORMAT(emp.salario / (COUNT(dep.cod_dep)+1), 2) AS media_renda
-FROM empregado emp, dependente dep 
-WHERE emp.cod_empregado=dep.cod_empregado
+FROM empregado emp, dependente dep
+WHERE emp.cod_empregado = dep.cod_empregado
 GROUP BY emp.nome
 ORDER BY n_dependentes;
