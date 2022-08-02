@@ -8,6 +8,7 @@ public class HelprbackApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(HelprbackApplication.class, args);
+		System.out.println("API DO Web App Helpr rodando!");
 	}
 
 }
