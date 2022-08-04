@@ -16,6 +16,7 @@ public abstract class Pessoa {
     protected Set<Integer> perfis = new HashSet<>();
     protected LocalDate dataCriacao = LocalDate.now();
 
+
     //#region Construtores e Getters/Setters
 
     public Pessoa() {
