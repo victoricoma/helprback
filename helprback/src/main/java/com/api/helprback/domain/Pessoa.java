@@ -14,11 +14,12 @@ public abstract class Pessoa {
     protected String cpf;
     protected String email;
     protected String senha;
-    protected Set<Integer> perfil = new HashSet<>();
+    protected Set<Integer> perfis = new HashSet<>();
     protected LocalDate dataCriacao = LocalDate.now();
 
     public Pessoa() {
         super();
+        addPerfis(Perfil.CLIENTE);
     }
 
     public Pessoa(Integer id, String nome, String cpf, String email, String senha) {
@@ -28,6 +29,7 @@ public abstract class Pessoa {
         this.cpf = cpf;
         this.email = email;
         this.senha = senha;
+        addPerfis(Perfil.CLIENTE);
     }
 
     public Integer getId() {
@@ -70,12 +72,12 @@ public abstract class Pessoa {
         this.senha = senha;
     }
 
-    public Set<Perfil> getPerfil() {
-        return perfil.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
+    public Set<Perfil> getPerfis() {
+        return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
     }
 
-    public void addPerfis(Set<Perfil> perfis) {
-        this.perfil = perfis;
+    public void addPerfis(Perfil perfis) {
+        this.perfis.add(perfis.getCodigo());
     }
 
     public LocalDate getDataCriacao() {
