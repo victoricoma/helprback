@@ -7,7 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class HelpbackApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(HelpbackApplication.class, args);
+		System.out.println("API do web App Helper rodando!");
 	}
 
 }
