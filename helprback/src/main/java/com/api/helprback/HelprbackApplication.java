@@ -10,5 +10,4 @@ public class HelprbackApplication {
 		SpringApplication.run(HelprbackApplication.class, args);
 		System.out.println("API do Web App Helpr rodando!");
 	}
-
 }
