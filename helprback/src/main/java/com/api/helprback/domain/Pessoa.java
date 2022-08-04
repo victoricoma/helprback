@@ -17,7 +17,7 @@ public abstract class Pessoa {
     protected Set<Integer> perfis = new HashSet<>();
     protected LocalDate dataCriacao = LocalDate.now();
 
-    public Pessoa() {
+    public Pessoa(){
         super();
         addPerfis(Perfil.CLIENTE);
     }
