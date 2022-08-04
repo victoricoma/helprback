@@ -19,16 +19,16 @@ public enum Prioridade {
         return descricao;
     }
 
-    public static Prioridade toEnum(Integer cod) {
+    public static Prioridade toEnum(Integer cod){
         if(cod == null){
             return null;
         }
 
-        for(Prioridade x: Prioridade.values()) {
+        for(Prioridade x: Prioridade.values()){
             if(cod.equals(x.getCodigo())){
                 return x;
             }
         }
-        throw new IllegalArgumentException("Prioridade inválida");
+        throw new IllegalArgumentException("Prioridade inválido");
     }
 }
