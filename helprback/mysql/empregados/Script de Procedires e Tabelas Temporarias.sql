@@ -18,6 +18,11 @@ END
 //
 DELIMITER ;
 DELIMITER //
+
+//
+DELIMITER ;
+CALL sps_verifica_log_salario(NOW(),"2022-07-29");
+=======
 CREATE PROCEDURE sps_verifica_log_departamento(
 IN dt_busca_init DATETIME,
 IN dt_busca_fim DATETIME
@@ -59,4 +64,3 @@ CALL sps_verifica_log_salario(NOW(),"2022-07-29");
 CALL sps_verifica_log_departamento(NOW(), "2022-07-30");
 CALL verifica_inss_empregado(0.12, 2427.36, 3641.03);
 CALL verifica_inss_empregado(0.14, 3641.04, 7087.22);
-
