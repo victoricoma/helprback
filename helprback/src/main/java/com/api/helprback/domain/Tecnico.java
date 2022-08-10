@@ -1,5 +1,7 @@
 package com.api.helprback.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import java.util.ArrayList;
@@ -9,6 +11,7 @@ public class Tecnico extends Pessoa{
 
 
     private static final long serialVersionVID = 1L;
+    @JsonIgnore
     @OneToMany(mappedBy = "tecnico")
     private List<Chamado> chamados = new ArrayList<>();
 
