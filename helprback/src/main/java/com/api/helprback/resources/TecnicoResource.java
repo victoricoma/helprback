@@ -3,7 +3,6 @@ package com.api.helprback.resources;
 import com.api.helprback.domain.Tecnico;
 import com.api.helprback.domain.dtos.TecnicoDTO;
 import com.api.helprback.services.TecnicoService;
-import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
