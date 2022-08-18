@@ -1,5 +1,6 @@
 package com.api.helprback.domain;
 
+import com.api.helprback.domain.dtos.ChamadoDTO;
 import com.api.helprback.domain.enums.Prioridade;
 import com.api.helprback.domain.enums.Status;
 import com.fasterxml.jackson.annotation.JsonFormat;
