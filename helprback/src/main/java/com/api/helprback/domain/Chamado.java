@@ -1,5 +1,6 @@
 package com.api.helprback.domain;
 
+import com.api.helprback.domain.dtos.ChamadoDTO;
 import com.api.helprback.domain.enums.Prioridade;
 import com.api.helprback.domain.enums.Status;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -7,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+
 @Entity
 public class Chamado implements Serializable {
 
@@ -24,11 +26,11 @@ public class Chamado implements Serializable {
     private String titulo;
     private String observacoes;
 
-   @ManyToOne
-   @JoinColumn(name="tecnico_id")
+    @ManyToOne
+    @JoinColumn(name = "tecnico_id")
     private Tecnico tecnico;
     @ManyToOne
-    @JoinColumn(name="cliente_id")
+    @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
     public Chamado() {
@@ -45,6 +47,7 @@ public class Chamado implements Serializable {
         this.tecnico = tecnico;
         this.cliente = cliente;
     }
+
 
     public Integer getId() {
         return id;
@@ -139,7 +142,7 @@ public class Chamado implements Serializable {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((id == null)? 0 : id.hashCode());
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
         return result;
     }
 }
