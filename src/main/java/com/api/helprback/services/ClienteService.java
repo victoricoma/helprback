@@ -54,6 +54,7 @@ public class ClienteService {
 
     public Cliente update(Integer id, ClienteDTO objDto) {
         objDto.setId(id);
+        objDto.setSenha(encoder.encode(objDto.getSenha()));
         Cliente oldObj = findById(id);
         validaPorCpfEEmail(objDto);
         oldObj = new Cliente(objDto);
