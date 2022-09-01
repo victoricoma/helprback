@@ -70,4 +70,9 @@ public class ChamadoService {
         Optional<List<Chamado>> obj = repository.reportByTecnicoChamadoSemanal(idTecnico);
         return obj.orElseThrow(() -> new ObjectNotFoundException("Não existem chamados neste semana para:"+idTecnico));
     }
+
+    public List<Chamado> reportByTecnicoUltimosTresDias(Integer idTecnico) {
+    Optional<List<Chamado>> obj = repository.reportByTecnicoUltimosTresDias(idTecnico);
+    return obj.orElseThrow(()-> new ObjectNotFoundException(("Não existe chamado nos ultimos três dias.")));
+    }
 }
