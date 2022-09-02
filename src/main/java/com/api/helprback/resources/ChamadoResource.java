@@ -1,6 +1,7 @@
 package com.api.helprback.resources;
 
 import com.api.helprback.domain.Chamado;
+import com.api.helprback.domain.LogUpdateStatus;
 import com.api.helprback.domain.dtos.ChamadoDTO;
 import com.api.helprback.services.ChamadoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,4 +59,9 @@ public class ChamadoResource {
         return ResponseEntity.ok().body(reportObj);
     }
 
+    @GetMapping(value = "/log/status")
+    public ResponseEntity<List<LogUpdateStatus>> findAllStatusLog() {
+        List<LogUpdateStatus> log = chamadoService.logChamadoStatus();
+        return ResponseEntity.ok().body(log);
+    }
 }
