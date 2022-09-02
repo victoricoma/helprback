@@ -2,11 +2,13 @@ package com.api.helprback.services;
 
 import com.api.helprback.domain.Chamado;
 import com.api.helprback.domain.Cliente;
+import com.api.helprback.domain.LogUpdateStatus;
 import com.api.helprback.domain.Tecnico;
 import com.api.helprback.domain.dtos.ChamadoDTO;
 import com.api.helprback.domain.enums.Prioridade;
 import com.api.helprback.domain.enums.Status;
 import com.api.helprback.repositories.ChamadoRepository;
+import com.api.helprback.repositories.LogUpdateStatusRepository;
 import com.api.helprback.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +26,9 @@ public class ChamadoService {
 
     @Autowired
     private ClienteService clienteService;
+
+    @Autowired
+    private LogUpdateStatusRepository statusRepository;
 
     public Chamado findById(Integer id) {
         Optional<Chamado> obj = repository.findById(id);
@@ -74,5 +79,10 @@ public class ChamadoService {
     public List<Chamado> reportByTecnicoUltimosTresDias(Integer idTecnico) {
     Optional<List<Chamado>> obj = repository.reportByTecnicoUltimosTresDias(idTecnico);
     return obj.orElseThrow(()-> new ObjectNotFoundException(("Não existe chamado nos ultimos três dias.")));
+    }
+
+    public List<LogUpdateStatus> logChamadoStatus() {
+        Optional<List<LogUpdateStatus>> obj = statusRepository.findLogChamadoStatus();
+        return obj.orElseThrow(() -> new ObjectNotFoundException("Não existem logs de status disponíveis no momento."));
     }
 }
