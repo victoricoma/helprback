@@ -1,8 +1,11 @@
 package com.api.helprback;
 
 import com.api.helprback.domain.Chamado;
+import com.api.helprback.domain.Pessoa;
 import com.api.helprback.domain.Tecnico;
+import com.api.helprback.domain.dtos.PessoaDTO;
 import com.api.helprback.services.ChamadoService;
+import com.api.helprback.services.PessoaService;
 import com.api.helprback.services.TecnicoService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -20,6 +23,9 @@ class HelprbackApplicationTests {
 	@Autowired
 	private TecnicoService tecnicoService;
 
+	@Autowired
+	private PessoaService pessoaService;
+
 	@Test
 	void testContextReportChamadosTecnicoSemanal() {
 		Integer idTecnico = 1;
@@ -31,5 +37,12 @@ class HelprbackApplicationTests {
 	void testContextReportTecnicoUrgenciaDia(){
 		List<Tecnico> test = tecnicoService.reportTecnicoChamadoPrioridadeDia();
 		Assertions.assertTrue(test.size()>=0);
+	}
+
+	@Test
+	void testContextFindById(){
+		String email = "victor.icoma@gmail.com";
+		Pessoa testEmail = pessoaService.findByEmail(email);
+		Assertions.assertNotNull(testEmail);
 	}
 }
