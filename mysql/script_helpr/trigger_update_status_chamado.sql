@@ -11,8 +11,10 @@ DELIMITER //
 CREATE TRIGGER trigger_update_status_chamado BEFORE UPDATE ON chamado
 FOR EACH ROW 
 BEGIN
-	IF(NEW.status <> OLD.status) THEN INSERT INTO log_update_status(titulo_chamada, dt_alteracao, status_antigo, status_novo)
+	IF(NEW.status <> OLD.status) THEN INSERT INTO log_update_status(dt_alteracao, status_antigo, status_novo)
     VALUES(NOW(), old.status, new.status);
 END IF;
 END //
 DELIMITER ;
+
+SELECT * FROM log_update_status;
