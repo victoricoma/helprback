@@ -64,4 +64,11 @@ public class ChamadoResource {
         List<LogUpdateStatus> log = chamadoService.logChamadoStatus();
         return ResponseEntity.ok().body(log);
     }
+
+    @GetMapping(value = "/cliente/{clienteId}")
+    public ResponseEntity<List<ChamadoDTO>> findByClienteId(@PathVariable Integer clienteId) {
+        List<Chamado> obj = chamadoService.findByClienteId(clienteId);
+        List<ChamadoDTO> objDto = obj.stream().map(rel -> new ChamadoDTO(rel)).collect(Collectors.toList());
+        return ResponseEntity.ok().body(objDto);
+    }
 }

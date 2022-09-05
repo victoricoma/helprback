@@ -8,6 +8,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ChamadoRepository extends JpaRepository<Chamado, Integer> {
+
+    Optional<List<Chamado>> findByClienteId(Integer clienteId);
+
     @Query(value="CALL sps_relatorio_andamento_tecnico_semanal(:idTecnico, CURRENT_DATE())", nativeQuery=true)
     Optional<List<Chamado>> reportByTecnicoChamadoSemanal(Integer idTecnico);
 

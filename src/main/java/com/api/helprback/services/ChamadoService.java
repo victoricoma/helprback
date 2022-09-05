@@ -85,4 +85,9 @@ public class ChamadoService {
         Optional<List<LogUpdateStatus>> obj = statusRepository.findLogChamadoStatus();
         return obj.orElseThrow(() -> new ObjectNotFoundException("Não existem logs de status disponíveis no momento."));
     }
+
+    public List<Chamado> findByClienteId(Integer clienteId) {
+        Optional<List<Chamado>> obj = repository.findByClienteId(clienteId);
+        return  obj.orElseThrow(() -> new ObjectNotFoundException("Não existem chamados para este id no momento."));
+    }
 }
