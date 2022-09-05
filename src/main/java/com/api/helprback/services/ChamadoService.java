@@ -90,4 +90,9 @@ public class ChamadoService {
         Optional<List<Chamado>> obj = repository.findByClienteId(clienteId);
         return  obj.orElseThrow(() -> new ObjectNotFoundException("Não existem chamados para este id no momento."));
     }
+
+    public List<Chamado> reportByClienteEmAberto() {
+        Optional<List<Chamado>> obj = repository.reportByClienteEmAberto();
+        return obj.orElseThrow(() -> new ObjectNotFoundException("Não existem clientes com chamados em aberto."));
+    }
 }

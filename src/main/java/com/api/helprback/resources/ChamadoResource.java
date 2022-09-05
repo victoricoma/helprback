@@ -71,4 +71,11 @@ public class ChamadoResource {
         List<ChamadoDTO> objDto = obj.stream().map(rel -> new ChamadoDTO(rel)).collect(Collectors.toList());
         return ResponseEntity.ok().body(objDto);
     }
+
+    @GetMapping(value= "/report/chamados/cliente")
+    public  ResponseEntity<List<ChamadoDTO>> reportByClienteEmAberto(){
+        List<Chamado> obj = chamadoService.reportByClienteEmAberto();
+        List<ChamadoDTO> reportObj = obj.stream().map(x-> new ChamadoDTO(x)). collect(Collectors.toList());
+        return ResponseEntity.ok().body(reportObj);
+    }
 }
