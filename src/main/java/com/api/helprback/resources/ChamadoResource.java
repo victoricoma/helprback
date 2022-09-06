@@ -1,6 +1,7 @@
 package com.api.helprback.resources;
 
 import com.api.helprback.domain.Chamado;
+import com.api.helprback.domain.LogChamadoPrioridade;
 import com.api.helprback.domain.LogUpdateStatus;
 import com.api.helprback.domain.dtos.ChamadoDTO;
 import com.api.helprback.services.ChamadoService;
@@ -78,4 +79,11 @@ public class ChamadoResource {
         List<ChamadoDTO> reportObj = obj.stream().map(x-> new ChamadoDTO(x)). collect(Collectors.toList());
         return ResponseEntity.ok().body(reportObj);
     }
+
+    @GetMapping(value = "/log/prioridade")
+        public ResponseEntity<List<LogChamadoPrioridade>> findLogPrioridadeChamado(){
+        List<LogChamadoPrioridade> logList = chamadoService.findDiaLogChamado();
+        return ResponseEntity.ok().body(logList);
+    }
+
 }
