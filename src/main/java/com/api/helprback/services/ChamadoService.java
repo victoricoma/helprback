@@ -1,13 +1,11 @@
 package com.api.helprback.services;
 
-import com.api.helprback.domain.Chamado;
-import com.api.helprback.domain.Cliente;
-import com.api.helprback.domain.LogUpdateStatus;
-import com.api.helprback.domain.Tecnico;
+import com.api.helprback.domain.*;
 import com.api.helprback.domain.dtos.ChamadoDTO;
 import com.api.helprback.domain.enums.Prioridade;
 import com.api.helprback.domain.enums.Status;
 import com.api.helprback.repositories.ChamadoRepository;
+import com.api.helprback.repositories.LogChamadoPrioridadeRepository;
 import com.api.helprback.repositories.LogUpdateStatusRepository;
 import com.api.helprback.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +28,10 @@ public class ChamadoService {
     @Autowired
     private LogUpdateStatusRepository statusRepository;
 
+    @Autowired
+    private LogChamadoPrioridadeRepository logChamadoRepository;
+
+
     public Chamado findById(Integer id) {
         Optional<Chamado> obj = repository.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException("Não existe chamado com ID: "+id));
@@ -47,8 +49,14 @@ public class ChamadoService {
         objDto.setId(id);
         Chamado oldObj = findById(id);
         oldObj = newChamado(objDto);
-        return repository.save(oldObj);
+        return repository.save(oldObj);        
     }
+
+    public List<LogChamadoPrioridade> findDiaLogChamado() {
+        Optional<List<LogChamadoPrioridade>> obj = logChamadoRepository.findLogChamadoPrioridadeDia();
+        return obj.orElseThrow(() -> new ObjectNotFoundException("Não existem Logs de Prioridades no momento."));
+    }
+
 
     private Chamado newChamado(ChamadoDTO obj){
         Tecnico tecnico = tecnicoService.findById(obj.getTecnico());
