@@ -18,5 +18,8 @@ public class RelatorioBaseTecnicoChamadoService {
         Optional<List<RelatorioBaseTecnicoChamado>> reportServicePrioridade = relatorioBaseTecnicoChamadoRepository.reportCountChamadoTecnicoPrioridade(id);
         return reportServicePrioridade.orElseThrow(() -> new ObjectNotFoundException("Sem relatorios para o técnico:" + id));
     }
-
+    public List<RelatorioBaseTecnicoChamado> reportByTecnicoGroupByStatus(Integer id) {
+        Optional<List<RelatorioBaseTecnicoChamado>> reportServiceStatus = relatorioBaseTecnicoChamadoRepository.reportCountChamadoTecnicoStatus(id);
+        return reportServiceStatus.orElseThrow(() -> new ObjectNotFoundException("Sem relatorios para o técnico: " + id));
+    }
 }

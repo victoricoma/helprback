@@ -10,4 +10,6 @@ import java.util.Optional;
 public interface RelatorioBaseTecnicoChamadoRepository extends JpaRepository<RelatorioBaseTecnicoChamado,Integer> {
     @Query(value="CALL sps_relatorio_chamados_prioridade_tecnico(:idTecnico)", nativeQuery=true)
     Optional<List<RelatorioBaseTecnicoChamado>> reportCountChamadoTecnicoPrioridade(Integer idTecnico);
+    @Query(value="Call sps_relatorio_status_chamados_tecnicos(:idTecnico)", nativeQuery=true)
+    Optional<List<RelatorioBaseTecnicoChamado>> reportCountChamadoTecnicoStatus(Integer idTecnico);
 }

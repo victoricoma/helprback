@@ -23,4 +23,9 @@ public class RelatorioBaseTecnicoChamadoResource {
         List<RelatorioBaseTecnicoChamado> reportResourcePrioridade = relatorioBaseTecnicoChamadoService.reportByTecnicoOrderByPrioridade(idCountPrioridade);
         return ResponseEntity.ok().body(reportResourcePrioridade);
     }
+    @GetMapping(value = "/contagem/status/{idCountStatus}")
+    public ResponseEntity<List<RelatorioBaseTecnicoChamado>> countTecnicoChamadoStatusId(@PathVariable Integer idCountStatus){
+        List<RelatorioBaseTecnicoChamado> reportResourceStatus = relatorioBaseTecnicoChamadoService.reportByTecnicoGroupByStatus(idCountStatus);
+        return ResponseEntity.ok().body(reportResourceStatus);
+    }
 }
