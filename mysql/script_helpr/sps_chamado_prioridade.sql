@@ -8,7 +8,7 @@ BEGIN
 CREATE TEMPORARY TABLE tpm_chamado_prioridade
 	AS
     SELECT * FROM log_chamado_prioridade
-    WHERE data_alteracao BETWEEN dt_inicio AND dt_fim;
+    WHERE dt_alteracao BETWEEN dt_inicio AND dt_fim;
     SELECT * FROM tpm_chamado_prioridade;
     DROP TABLE tpm_chamado_prioridade;
     
