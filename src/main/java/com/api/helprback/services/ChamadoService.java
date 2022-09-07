@@ -89,6 +89,11 @@ public class ChamadoService {
     return obj.orElseThrow(()-> new ObjectNotFoundException(("Não existe chamado nos ultimos três dias.")));
     }
 
+    public List<Chamado> reportTresDiasChamadosAbertosTecnico(Integer idTecnico) {
+        Optional<List<Chamado>> obj = repository.reportByTecnicoChamadosAbertosTresDias(idTecnico);
+        return obj.orElseThrow(() -> new ObjectNotFoundException("Não existem chamados abertos nos últimos três dias para: " + idTecnico));
+    }
+
     public List<LogUpdateStatus> logChamadoStatus() {
         Optional<List<LogUpdateStatus>> obj = statusRepository.findLogChamadoStatus();
         return obj.orElseThrow(() -> new ObjectNotFoundException("Não existem logs de status disponíveis no momento."));
