@@ -27,6 +27,9 @@ class HelprbackApplicationTests {
 	@Autowired
 	private FuturosCandidatosService futurosCandidatosService;
 
+	@Autowired
+	private ClienteService clienteService;
+
 	@Test
 	void testContextReportChamadosTecnicoSemanal() {
 		Integer idTecnico = 1;
@@ -74,5 +77,48 @@ class HelprbackApplicationTests {
 	void testFuturosCandidatosFindAll(){
 		List<FuturosCandidatos> test = futurosCandidatosService.findAll();
 		Assertions.assertTrue(test.size() >=0);
+	}
+
+
+
+	@Test
+	void testContextFindAllTecnico() {
+		List<Tecnico> test = tecnicoService.findAll();
+		Assertions.assertTrue(test.size() >= 0);
+	}
+	@Test
+	void testContexFindByIdTecnico() {
+		Integer id = 1;
+		Tecnico testId = tecnicoService.findById(id);
+		Assertions.assertNotNull(testId);
+
+
+	}
+	@Test
+	void testContextFindAllChamado() {
+		List<Chamado> test = chamadoService.findAll();
+		Assertions.assertTrue(test.size() >= 0);
+
+	}
+	@Test
+	void testContexFindByIdChamado() {
+		Integer id = 1;
+		Tecnico testId = tecnicoService.findById(id);
+		Assertions.assertNotNull(testId);
+
+	}
+
+	@Test
+	void testContextFindAllCliente() {
+		List<Cliente> test = clienteService.findAll();
+		Assertions.assertTrue(test.size() >= 0);
+
+	}
+	@Test
+	void testContexFindByIdCliente() {
+		Integer id = 1;
+		Tecnico testId = tecnicoService.findById(id);
+		Assertions.assertNotNull(testId);
+
 	}
 }
