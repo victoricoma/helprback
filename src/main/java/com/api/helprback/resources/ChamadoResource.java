@@ -1,5 +1,6 @@
 package com.api.helprback.resources;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import com.api.helprback.domain.Chamado;
 import com.api.helprback.domain.LogChamadoPrioridade;
 import com.api.helprback.domain.LogUpdateStatus;
@@ -33,6 +34,7 @@ public class ChamadoResource {
         List<ChamadoDTO> listDto = list.stream().map(obj -> new ChamadoDTO(obj)).collect(Collectors.toList());
         return ResponseEntity.ok().body(listDto);
     }
+    @PreAuthorize("hasAnyRole('ROLE_TECNICO')")
     @PostMapping
     public ResponseEntity<ChamadoDTO> create(@Valid @RequestBody ChamadoDTO objDto){
         Chamado obj = chamadoService.create(objDto);
@@ -40,19 +42,20 @@ public class ChamadoResource {
                 .fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
-
+    @PreAuthorize("hasAnyRole('ROLE_TECNICO')")
     @PutMapping(value="/{id}")
     public ResponseEntity<ChamadoDTO> update(@PathVariable Integer id, @Valid @RequestBody ChamadoDTO objDto){
         Chamado newObj = chamadoService.update(id, objDto);
         return ResponseEntity.ok().body(new ChamadoDTO(newObj));
     }
+    @PreAuthorize("hasAnyRole('ROLE_TECNICO')")
     @GetMapping(value = "/report/tecnico/{idTecnico}")
     public ResponseEntity<List<ChamadoDTO>> reportByTecnicoChamadoSemanal(@PathVariable Integer idTecnico){
         List<Chamado> report = chamadoService.reportSemanalChamadosTecnico(idTecnico);
         List<ChamadoDTO> reportDto = report.stream().map(rel -> new ChamadoDTO(rel)).collect(Collectors.toList());
         return ResponseEntity.ok().body(reportDto);
     }
-
+    @PreAuthorize("hasAnyRole('ROLE_TECNICO')")
     @GetMapping(value ="/report/chamados/tecnico/{idTecnico}")
     public ResponseEntity<List<ChamadoDTO>>reportByTecnicoUltimosTresDias(@PathVariable Integer idTecnico){
         List<Chamado> obj = chamadoService.reportByTecnicoUltimosTresDias(idTecnico);
@@ -72,7 +75,7 @@ public class ChamadoResource {
         List<ChamadoDTO> objDto = obj.stream().map(rel -> new ChamadoDTO(rel)).collect(Collectors.toList());
         return ResponseEntity.ok().body(objDto);
     }
-
+    @PreAuthorize("hasAnyRole('ROLE_TECNICO')")
     @GetMapping(value= "/report/chamados/cliente")
     public  ResponseEntity<List<ChamadoDTO>> reportByClienteEmAberto(){
         List<Chamado> obj = chamadoService.reportByClienteEmAberto();
