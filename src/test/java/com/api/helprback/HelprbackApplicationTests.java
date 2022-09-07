@@ -1,13 +1,7 @@
 package com.api.helprback;
 
-import com.api.helprback.domain.Chamado;
-import com.api.helprback.domain.Pessoa;
-import com.api.helprback.domain.RelatorioBaseTecnicoChamado;
-import com.api.helprback.domain.Tecnico;
-import com.api.helprback.services.ChamadoService;
-import com.api.helprback.services.PessoaService;
-import com.api.helprback.services.RelatorioBaseTecnicoChamadoService;
-import com.api.helprback.services.TecnicoService;
+import com.api.helprback.domain.*;
+import com.api.helprback.services.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +23,9 @@ class HelprbackApplicationTests {
 
 	@Autowired
 	RelatorioBaseTecnicoChamadoService relatorioBaseTecnicoChamadoService;
+
+	@Autowired
+	private FuturosCandidatosService futurosCandidatosService;
 
 	@Test
 	void testContextReportChamadosTecnicoSemanal() {
@@ -72,4 +69,10 @@ class HelprbackApplicationTests {
         List<RelatorioBaseTecnicoChamado> test = relatorioBaseTecnicoChamadoService.reportByTecnicoOrderByPrioridade(idTecnico);
         Assertions.assertTrue(test.size()>=0);
     }
+
+	@Test
+	void testFuturosCandidatosFindAll(){
+		List<FuturosCandidatos> test = futurosCandidatosService.findAll();
+		Assertions.assertTrue(test.size() >=0);
+	}
 }
