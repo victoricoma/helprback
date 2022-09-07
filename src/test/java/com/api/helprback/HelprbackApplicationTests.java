@@ -56,4 +56,14 @@ class HelprbackApplicationTests {
 		List<RelatorioBaseTecnicoChamado> test = relatorioBaseTecnicoChamadoService.reportByTecnicoGroupByStatus(idTecnico);
 		Assertions.assertNotNull(test);
 	}
+	@Test
+	void testContextAbertoFindAll(){
+		List<Chamado> testAberto = chamadoService.findAll();
+		Assertions.assertTrue(testAberto.size()>=0);
+	}
+	@Test
+	void testContextPrioridade(){
+		List<Tecnico> testPrioridade = tecnicoService.reportTecnicoChamadoPrioridadeDia();
+		Assertions.assertTrue(testPrioridade.size()>=0);
+	}
 }
