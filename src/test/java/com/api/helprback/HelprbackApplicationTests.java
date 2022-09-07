@@ -121,4 +121,10 @@ class HelprbackApplicationTests {
 		Assertions.assertNotNull(testId);
 
 	}
+	@Test
+	void testContextReportByTecnicoUltimosTresDias(){
+		List<Chamado> test = chamadoService.reportByTecnicoUltimosTresDias(3);
+		Assertions.assertTrue(test.size()>=0);
+	}
 }
+
