@@ -1,5 +1,7 @@
 package com.api.helprback.domain;
 
+import com.api.helprback.domain.dtos.MensagemDTO;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -26,6 +28,12 @@ public class Mensagem implements Serializable {
     }
 
     public Mensagem() {
+    }
+
+    public Mensagem(MensagemDTO objDto) {
+        this.id = objDto.getId();
+        this.mensagem = objDto.getMensagem();
+        this.tecnico = objDto.getTecnico();
     }
 
     public Integer getId() {
