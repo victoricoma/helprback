@@ -102,11 +102,4 @@ public class ChamadoResource {
         List<LogChamadoPrioridade> logList = chamadoService.findDiaLogChamado();
         return ResponseEntity.ok().body(logList);
     }
-
-    @GetMapping(value = "/report/clientes/{idCliente}")
-    public ResponseEntity<List<ChamadoDTO>> findByClienteId(@PathVariable Integer idCliente) {
-        List<Chamado> report = chamadoService.reportClienteChamados(idCliente);
-        List<ChamadoDTO> reportDto = report.stream().map(rel -> new ChamadoDTO(rel)).collect(Collectors.toList());
-        return ResponseEntity.ok().body(reportDto);
-    }
 }
