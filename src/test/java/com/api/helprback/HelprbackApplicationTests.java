@@ -30,6 +30,9 @@ class HelprbackApplicationTests {
 	@Autowired
 	private ClienteService clienteService;
 
+	@Autowired
+	private NovosClientesService novosClientesService;
+
 	@Test
 	void testContextReportChamadosTecnicoSemanal() {
 		Integer idTecnico = 1;
@@ -139,6 +142,12 @@ class HelprbackApplicationTests {
 	void testContextReportByChamadosUrgentesUltimosTresDias(){
 		List<Chamado> test = chamadoService.reportByChamadosUrgentesUltimosTresDias(2);
 		Assertions.assertTrue(test.size()>=0);
+	}
+
+	@Test
+	void testNovosClientesFindAll(){
+		List<NovosClientes> test = novosClientesService.findAll();
+		Assertions.assertTrue(test.size() >= 0);
 	}
 }
 
