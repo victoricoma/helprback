@@ -70,6 +70,13 @@ public class ChamadoResource {
         return ResponseEntity.ok().body(reportDto);
     }
 
+    @GetMapping(value = "/report/urgentes/{idTecnico}")
+    public ResponseEntity<List<ChamadoDTO>>reportByChamadosUrgentesUltimosTresDias(@PathVariable Integer idTecnico){
+        List<Chamado> list = chamadoService.reportByChamadosUrgentesUltimosTresDias(idTecnico);
+        List<ChamadoDTO> listDto = list.stream().map(obj -> new ChamadoDTO(obj)).collect(Collectors.toList());
+        return ResponseEntity.ok().body(listDto);
+    }
+
     @GetMapping(value = "/log/status")
     public ResponseEntity<List<LogUpdateStatus>> findAllStatusLog() {
         List<LogUpdateStatus> log = chamadoService.logChamadoStatus();

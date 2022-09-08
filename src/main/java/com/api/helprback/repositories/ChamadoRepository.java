@@ -22,4 +22,7 @@ public interface ChamadoRepository extends JpaRepository<Chamado, Integer> {
 
     @Query(value = "CALL sps_chamado_aberto_cliente(CURRENT_DATE())", nativeQuery = true)
     Optional<List<Chamado>> reportByClienteEmAberto();
+
+    @Query(value = "CALL sps_chamados_urgentes_prioridade_alta_tres_dias(:idTecnico, CURRENT_DATE())", nativeQuery = true)
+    Optional<List<Chamado>> reportByChamadosUrgentesUltimosTresDias(Integer idTecnico);
 }
