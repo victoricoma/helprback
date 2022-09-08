@@ -113,4 +113,9 @@ public class ChamadoService {
         Optional<List<Chamado>> obj = repository.reportByChamadosUrgentesUltimosTresDias(idTecnico);
         return obj.orElseThrow(()-> new ObjectNotFoundException(("Não existem chamados urgentes nos últimos três dias")));
     }
+    
+    public List<Chamado> reportClienteChamados(Integer idCliente) {
+        Optional<List<Chamado>> obj = repository.findByClienteId(idCliente);
+        return obj.orElseThrow(() -> new ObjectNotFoundException("Lista de clientes logado:"+idCliente));
+    }
 }
