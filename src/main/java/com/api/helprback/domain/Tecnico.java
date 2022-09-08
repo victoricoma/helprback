@@ -17,6 +17,9 @@ public class Tecnico extends Pessoa{
     @OneToMany(mappedBy = "tecnico")
     private List<Chamado> chamados = new ArrayList<>();
 
+    @OneToMany(mappedBy = "tecnico")
+    private List<Mensagem> mensagem = new ArrayList<>();
+
     public Tecnico() {
         super();
     }
@@ -41,5 +44,12 @@ public class Tecnico extends Pessoa{
 
     public void setChamados(List<Chamado> chamados) {
         this.chamados = chamados;
+    }
+
+    public List<Mensagem> getMensagem() {
+        return mensagem;
+    }
+    public void setMensagem(List<Mensagem> mensagem) {
+        this.mensagem = mensagem;
     }
 }
