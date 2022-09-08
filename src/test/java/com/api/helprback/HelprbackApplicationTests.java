@@ -126,5 +126,12 @@ class HelprbackApplicationTests {
 		List<Chamado> test = chamadoService.reportByTecnicoUltimosTresDias(3);
 		Assertions.assertTrue(test.size()>=0);
 	}
+
+	@Test
+	void testFindByClienteId(){
+		Integer clienteId = 7;
+		List<Chamado> test = chamadoService.findByClienteId(clienteId);
+		Assertions.assertTrue(test.size() >= 0);
+ 	}
 }
 
